@@ -17,9 +17,11 @@ import com.apihome.ued.task.SpiderTask;
 import com.apihome.ued.task.impl.SearchRssTaskImpl;
 
 /**
- * Rss 解析
- * @author root
- *
+ * @ClassName: RssLinkSpider 
+ * @Description: TODO(Rss link 解析任务) 
+ * @author david.wang 
+ * @date 2013-1-2 下午9:21:13 
+ * @version 1.0
  */
 @Component("rssLinkSpider")
 public class RssLinkSpider 

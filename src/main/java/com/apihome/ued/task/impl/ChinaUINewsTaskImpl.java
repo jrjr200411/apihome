@@ -24,6 +24,13 @@ import com.apihome.common.HttpClientFactory;
 import com.apihome.ued.dao.UcdDAO;
 import com.apihome.ued.task.SpiderTask;
 
+/**
+ * @ClassName: ChinaUINewsTaskImpl 
+ * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @author david.wang 
+ * @date 2013-1-3 上午1:08:36 
+ * @version 1.0
+ */
 @Component("chinaUINewsTaskImpl")
 public class ChinaUINewsTaskImpl implements SpiderTask 
 {
@@ -35,7 +42,7 @@ public class ChinaUINewsTaskImpl implements SpiderTask
 	private UcdDAO ucdDAO;
 
 	/**
-	 * 1、针对ucdchina中文章的特点进行穷举 http://ucdchina.com/topic/12299(0-xxxxx)
+	 * 1、针对chinaUI中文章的特点进行穷举
 	 * 2、解析网页结构，存储必要的字段t_ued_topic
 	 */
 	@Override

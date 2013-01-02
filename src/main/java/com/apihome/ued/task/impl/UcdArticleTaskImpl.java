@@ -27,6 +27,13 @@ import com.apihome.ued.po.QuitNode;
 import com.apihome.ued.po.TopicArticlePO;
 import com.apihome.ued.task.SpiderTask;
 
+/**
+ * @ClassName: UcdArticleTaskImpl 
+ * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @author david.wang 
+ * @date 2013-1-3 上午1:08:52 
+ * @version 1.0
+ */
 @Component("ucdSpiderTaskImpl")
 public class UcdArticleTaskImpl implements SpiderTask 
 {

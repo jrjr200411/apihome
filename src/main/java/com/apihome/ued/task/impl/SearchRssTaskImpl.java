@@ -26,6 +26,13 @@ import com.apihome.ued.dao.RssDAO;
 import com.apihome.ued.po.LinkPO;
 import com.apihome.ued.task.SpiderTask;
 
+/**
+ * @ClassName: SearchRssTaskImpl 
+ * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @author david.wang 
+ * @date 2013-1-3 上午1:11:19 
+ * @version 1.0
+ */
 @Component("searchRssTaskImpl")
 public class SearchRssTaskImpl implements SpiderTask 
 {

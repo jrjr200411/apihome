@@ -18,9 +18,11 @@ import com.apihome.ued.task.impl.UcdArticleTaskImpl;
 import com.apihome.ued.task.impl.UcdTopicTaskImpl;
 
 /**
- * 针对ucdchina的网络爬虫
- * @author root
- *
+ * @ClassName: UcdSpider 
+ * @Description: TODO(针对ucdchina的网络爬虫) 
+ * @author david.wang 
+ * @date 2013-1-2 下午9:26:42 
+ * @version 1.0
  */
 @Component("ucdSpider")
 public class UcdSpider 
@@ -83,7 +85,7 @@ public class UcdSpider
 	        {
 	            for (String url : urllist)
 	            {
-	                newSpiderTaskThread(ucdArticleTaskImpl, url);
+	                this.newSpiderTaskThread(ucdArticleTaskImpl, url);
 	            }
 	        }
 		}
@@ -117,7 +119,7 @@ public class UcdSpider
     }
     
     /**
-     * 
+     * 根据url启动抓取任务的线程
      * @param urllist
      */
     public void ucdTopicTask(List<String> urllist)
@@ -139,7 +141,7 @@ public class UcdSpider
     }
     
     /**
-     * 
+     * 爬虫任务线程
      * @param task
      * @param url
      */

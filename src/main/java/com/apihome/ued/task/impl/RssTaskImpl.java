@@ -20,7 +20,13 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
-
+/**
+ * @ClassName: RssTaskImpl 
+ * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @author david.wang 
+ * @date 2013-1-3 上午1:09:13 
+ * @version 1.0
+ */
 @Component("rssTaskImpl")
 public class RssTaskImpl implements RssTask
 {

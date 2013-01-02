@@ -1,5 +1,12 @@
 package com.apihome.ued.task;
 
+/**
+ * @ClassName: RssTask 
+ * @Description: TODO(RSS内容解析接口) 
+ * @author david.wang 
+ * @date 2013-1-2 下午9:13:54 
+ * @version 1.0
+ */
 public interface RssTask
 {
     /**

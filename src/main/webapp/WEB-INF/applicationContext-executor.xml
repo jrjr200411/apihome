@@ -25,11 +25,11 @@
 	  
 	<task:scheduled-tasks scheduler="staticScheduler">
 
-<!-- 	    <task:scheduled ref="ucdSpider" method="ucdArticleSpider" fixed-rate="#{1000*3600*8}"/> -->
+	    <task:scheduled ref="ucdSpider" method="ucdArticleSpider" fixed-rate="#{1000*3600*8}"/>
 	    
 <!-- 	    <task:scheduled ref="ucdSpider" method="ucdTopicSpider" fixed-rate="#{1000*3600*8}"/> -->
 	
-		<task:scheduled ref="rssLinkSpider" method="rssLinkTask" fixed-rate="#{1000*3600*8}"/>
+<!-- 		<task:scheduled ref="rssLinkSpider" method="rssLinkTask" fixed-rate="#{1000*3600*8}"/> -->
 	
 	</task:scheduled-tasks>
 
