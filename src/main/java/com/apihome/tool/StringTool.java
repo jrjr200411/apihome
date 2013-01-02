@@ -11,6 +11,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.util.UriUtils;
 
+/**
+ * @ClassName: StringTool 
+ * @Description: TODO(字符串工具类) 
+ * @author david.wang 
+ * @date 2013-1-2 下午9:00:03 
+ * @version 1.0
+ */
 public class StringTool extends StringUtils
 {
     protected static Log logger = LogFactory.getLog(StringTool.class);

@@ -3,6 +3,13 @@ package com.apihome.tool;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @ClassName: RegexTool 
+ * @Description: TODO(正则工具类) 
+ * @author david.wang 
+ * @date 2013-1-2 下午8:56:22 
+ * @version 1.0
+ */
 public class RegexTool 
 {
     public static final String DOMAIN_PATTERN= "(?<=//|)((\\w)+\\.)+(net|org|hk|cn|com\\.cn|com\\.hk|com|net\\.cn|org\\.cn|biz|info|cc|tv|mobi|name|asia|tw|sh|ac|io|tm|travel|ws|us|sc|in|la|in|cm|co|so)"; 

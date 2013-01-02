@@ -1,16 +1,29 @@
 package com.apihome.tool;
 
 import java.net.URL;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * @ClassName: RssTool 
+ * @Description: TODO(RSS工具类) 
+ * @author david.wang 
+ * @date 2013-1-2 下午8:56:52 
+ * @version 1.0
+ */
 public class RssTool
 {
+    protected static Log logger = LogFactory.getLog(RssTool.class);
+    
 	private static RssTool instance = null;
 
 	static
@@ -19,6 +32,13 @@ public class RssTool
 			instance = new RssTool();
 	}
 
+	/**
+	 * @Title: writeNews 
+	 * @Description: TODO(这里用一句话描述这个方法的作用) 
+	 * @param @param url    设定文件 
+	 * @return void    返回类型 
+	 * @throws
+	 */
 	public static void writeNews(String url)
 	{
 		try
@@ -40,10 +60,18 @@ public class RssTool
 		}
 		catch (Exception ex)
 		{
-			ex.printStackTrace();
+		    logger.error("", ex);
 		}
 	}
 
+	/**
+	 * @Title: getCharacterDataFromElement 
+	 * @Description: TODO(这里用一句话描述这个方法的作用) 
+	 * @param @param e
+	 * @param @return    设定文件 
+	 * @return String    返回类型 
+	 * @throws
+	 */
 	private static String getCharacterDataFromElement(Element e)
 	{
 		try
@@ -57,7 +85,7 @@ public class RssTool
 		}
 		catch (Exception ex)
 		{
-
+		    logger.error("", ex);
 		}
 		return "";
 	} 

@@ -9,7 +9,13 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * @ClassName: DateTool 
+ * @Description: TODO(时间工具类) 
+ * @author david.wang 
+ * @date 2013-1-2 下午8:55:17 
+ * @version 1.0
+ */
 public class DateTool
 {
     /** 常规时间格式 */
