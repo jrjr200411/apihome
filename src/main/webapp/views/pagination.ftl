@@ -1,0 +1,31 @@
+<div class="pagination">
+	<ul style="margin: 20px auto 0px 0px;">
+	  	<#if pageView.currentPage gt 1 >
+	  	<li class="first"><a href="${pageView.hrefPrefix}1${pageView.hrefPostfix}" class="first"></a></li>
+	  	<li class="prev"><a href="${pageView.hrefPrefix}${(pageView.currentPage-1)?c}${pageView.hrefPostfix}" title="上一页" class="sprite prev"></a></li>
+	  	</#if>
+
+	  	<#if pageView.pageIndex.startIndex gt 1 >
+	  	<li class="spaces"><a>...</a></li>
+	  	</#if>
+	  	
+	  	<#if pageView.totalPage!=0>
+		<#list pageView.pageIndex.startIndex..pageView.pageIndex.endIndex as index>  
+			<#if pageView.currentPage == index>
+				<li class="active"><a>${index?c}</a></li>
+			<#else>
+				<li><a href="${pageView.hrefPrefix}${index?c}${pageView.hrefPostfix}">${index?c}</a></li>
+			</#if>
+		</#list>
+	  	</#if>
+
+		<#if pageView.totalPage gt pageView.pageIndex.endIndex >
+	  	<li class="spaces"><a>...</a></li>
+	  	</#if>	
+	  	
+		<#if pageView.currentPage lt pageView.totalPage>
+		<li class="next"><a href="${pageView.hrefPrefix}${(pageView.currentPage+1)?c}${pageView.hrefPostfix}" title="下一页"></a></li>
+		<li class="last"><a href="${pageView.hrefPrefix}${pageView.totalPage?c}${pageView.hrefPostfix}"></a></li>
+		</#if>
+	</ul>
+</div>	  

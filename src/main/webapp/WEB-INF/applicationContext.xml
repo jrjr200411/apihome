@@ -1,21 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="
-    http://www.springframework.org/schema/beans  
-    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
-    http://www.springframework.org/schema/util 
-    http://www.springframework.org/schema/util/spring-util-3.1.xsd 
-    http://www.springframework.org/schema/context  
-    http://www.springframework.org/schema/context/spring-context-3.1.xsd"
-    
-    default-lazy-init="true">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:apple="http://www.appleframework.com/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/jpa
+	   http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+	   http://www.springframework.org/schema/task
+	   http://www.springframework.org/schema/task/spring-task-3.1.xsd">  
 
-    <!-- 自动扫描 -->
-    <context:annotation-config />
-    <context:component-scan base-package="com.apihome"></context:component-scan>
+
+	<!-- 自动扫描 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.captcha"/>
+	<context:component-scan base-package="com.apihome"/>
+	
+	<!-- freemarker 配置 -->
+	<bean id="freemarkerSettings" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+            <property name="templateLoaderPath" value="/" />
+            <property name="freemarkerSettings">
+                <props>
+                    <prop key="template_update_delay">0</prop>
+                    <prop key="default_encoding">UTF-8</prop>
+                    <prop key="locale">zh_CN</prop>
+                    <prop key="url_escaping_charset">UTF-8</prop>
+                    <prop key="whitespace_stripping">true</prop>
+                    <prop key="classic_compatible">true</prop>
+                </props>
+            </property>
+            <property name="freemarkerVariables">
+                <map>
+                    <entry key="xml_escape" value-ref="fmXmlEscape" />
+                </map>
+            </property>
+    </bean>
+   
+    <bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <property name="templateLoaderPath" value="/" />
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="freeMarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="viewNames" value="*.ftl"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="cache" value="true" />
+        <property name="prefix" value="" />
+        <property name="suffix" value="" />
+        <property name="order" value="1"/>
+    </bean>
     
-	<util:properties id="applicationProperties" location="classpath:META-INF/application.properties" /> 
+    <bean id="viewDispatcher" class="com.captcha.commons.FreeMarkerViewDispatcher"/>
+    
+    <util:properties id="applicationProperties" location="classpath:META-INF/application.properties" /> 
 </beans>
