@@ -23,7 +23,7 @@
 
 	<!-- 自动扫描 -->
 	<context:annotation-config />
-	<context:component-scan base-package="com.captcha"/>
+	<context:component-scan base-package="com.xframework"/>
 	<context:component-scan base-package="com.apihome"/>
 	
 	<!-- freemarker 配置 -->
@@ -63,7 +63,7 @@
         <property name="order" value="1"/>
     </bean>
     
-    <bean id="viewDispatcher" class="com.captcha.commons.FreeMarkerViewDispatcher"/>
+    <bean id="viewDispatcher" class="com.xframework.commons.FreeMarkerViewDispatcher"/>
     
     <util:properties id="applicationProperties" location="classpath:META-INF/application.properties" /> 
 </beans>
