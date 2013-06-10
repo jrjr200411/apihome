@@ -7,9 +7,12 @@
             </div>
         </div>
     </div>
-
+    
+    
     <script type="text/javascript" src="/js/assets/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="/js/assets/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="/js/assets/moment.js"></script>
+    <script type="text/javascript" src="/js/assets/moment_langs.js"></script>
 
     <script type="text/javascript" src="/js/modern/dropdown.js"></script>
     <script type="text/javascript" src="/js/modern/accordion.js"></script>
@@ -21,7 +24,8 @@
     <script type="text/javascript" src="/js/modern/slider.js"></script>
     <script type="text/javascript" src="/js/modern/tile-slider.js"></script>
     <script type="text/javascript" src="/js/modern/tile-drag.js"></script>
-
+    <script type="text/javascript" src="/js/modern/calendar.js"></script>
+    
     <script type="text/javascript" src="/js/assets/github.info.js"></script>
     <script type="text/javascript" src="/js/assets/google-analytics.js"></script>
     <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
