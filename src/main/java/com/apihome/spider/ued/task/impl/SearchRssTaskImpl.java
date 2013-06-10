@@ -23,8 +23,8 @@ import com.apihome.model.ued.LinkPO;
 import com.apihome.spider.ued.common.HttpClientFactory;
 import com.apihome.spider.ued.constant.UcdConstant;
 import com.apihome.spider.ued.task.SpiderTask;
-import com.apihome.web.ued.tools.RegexTool;
-import com.apihome.web.ued.tools.StringTool;
+import com.xframework.tools.RegexTool;
+import com.xframework.tools.StringTool;
 
 /**
  * @ClassName: SearchRssTaskImpl 

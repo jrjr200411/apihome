@@ -12,13 +12,13 @@ import com.apihome.model.ued.RssPO;
 import com.apihome.spider.ued.common.HttpClientFactory;
 import com.apihome.spider.ued.constant.UcdConstant;
 import com.apihome.spider.ued.task.RssTask;
-import com.apihome.web.ued.tools.StringTool;
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import com.xframework.tools.StringTool;
 
 /**
  * @ClassName: RssTaskImpl 

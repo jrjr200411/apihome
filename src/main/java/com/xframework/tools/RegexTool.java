@@ -1,4 +1,4 @@
-package com.apihome.web.ued.tools;
+package com.xframework.tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,11 +77,11 @@ public class RegexTool
         return false;
     }
 
-    /**
+   /**
      * 解析文本中的email
-     * @param str
-     * @return
-     */
+  * @param str
+  * @return
+      */
     public static List<String> parseEmails(String str)
     {
         List<String> emails = new ArrayList<String>();

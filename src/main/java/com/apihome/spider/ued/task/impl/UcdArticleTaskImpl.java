@@ -24,8 +24,8 @@ import com.apihome.model.ued.QuitNode;
 import com.apihome.model.ued.TopicArticlePO;
 import com.apihome.spider.ued.common.HttpClientFactory;
 import com.apihome.spider.ued.task.SpiderTask;
-import com.apihome.web.ued.tools.DateTool;
-import com.apihome.web.ued.tools.StringTool;
+import com.xframework.tools.DateTool;
+import com.xframework.tools.StringTool;
 
 /**
  * @ClassName: UcdArticleTaskImpl 

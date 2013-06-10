@@ -15,7 +15,7 @@ import com.apihome.spider.ued.constant.UcdConstant;
 import com.apihome.spider.ued.task.SpiderTask;
 import com.apihome.spider.ued.task.impl.UcdArticleTaskImpl;
 import com.apihome.spider.ued.task.impl.UcdTopicTaskImpl;
-import com.apihome.web.ued.tools.StringTool;
+import com.xframework.tools.StringTool;
 
 /**
  * @ClassName: UcdSpider 

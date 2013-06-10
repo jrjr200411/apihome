@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.apihome.model.ued.Admin;
 import com.apihome.service.ued.AdminService;
 import com.apihome.web.ued.constants.WebConstant;
-import com.apihome.web.ued.tools.RegexTool;
 import com.xframework.pagination.PageView;
+import com.xframework.tools.RegexTool;
 
 /**
  * 后台管理功能控制器

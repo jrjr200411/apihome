@@ -1,4 +1,4 @@
-package com.apihome.web.ued.tools;
+package com.xframework.tools;
 
 import java.security.MessageDigest;
 

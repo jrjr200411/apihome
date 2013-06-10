@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.apihome.model.ued.User;
 import com.apihome.service.ued.UserService;
 import com.apihome.web.ued.constants.WebConstant;
-import com.apihome.web.ued.tools.RegexTool;
-import com.apihome.web.ued.tools.UniqId;
 import com.xframework.pagination.PageView;
+import com.xframework.tools.RegexTool;
+import com.xframework.tools.UniqId;
 
 /**
  * 前台用户控制器
