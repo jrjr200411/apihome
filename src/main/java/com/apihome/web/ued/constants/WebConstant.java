@@ -7,6 +7,12 @@ package com.apihome.web.ued.constants;
  */
 public class WebConstant
 {
+    // 默认分页
+    public static final int DEFAULT_PAGE_SIZE = 10;
+	
+    // 默认分页
+    public static final int DEFAULT_PAGE_NUM = 1;
+    
     /***********用户类型*************/
     
     // 管理员帐号
@@ -25,8 +31,7 @@ public class WebConstant
     public static final int USER_STATUS_TRY = 1;
     // 签约用户
     public static final int USER_STATUS_SIGN = 9;
-    // 默认分页
-    public static final int DEFAULT_PAGE_SIZE = 10;
+
     
     // 默认点数
     public static final int DEFAULT_POINT = 0;
