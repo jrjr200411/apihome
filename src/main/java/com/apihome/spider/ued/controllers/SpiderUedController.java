@@ -50,9 +50,7 @@ public class SpiderUedController
 	public String addRule(Invocation inv, SpiderRuleBO bo)
 	{
 		spiderRuleService.insertSpiderRule(bo);
-        PageView<SpiderRule> page = spiderRuleService.queryListByPage(WebConstant.DEFAULT_PAGE_NUM, WebConstant.DEFAULT_PAGE_SIZE);
-        inv.addModel("pageView", page);
-		return "admin_spider_list";
+		return "r:/spiderUed/list/1";
 	}
 	
 	/**
