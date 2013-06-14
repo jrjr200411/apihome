@@ -10,7 +10,12 @@ import org.reflections.Reflections;
 
 import com.apihome.spider.ued.annotation.HashUrl;
 
-public class ReflectTool
+/**
+ * java反射示例
+ * @author root
+ *
+ */
+public class ReflectDemo
 {
 
     public static void main(String[] args)
