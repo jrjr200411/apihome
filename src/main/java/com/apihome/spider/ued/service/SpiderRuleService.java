@@ -28,4 +28,17 @@ public interface SpiderRuleService
 	 */
 	public PageView<SpiderRule> queryListByPage(int pageNum,int pageSize);
 
+	/**
+	 * 根据ID查询采集规则
+	 * @param ruleId
+	 * @return
+	 */
+    public SpiderRule querySpiderRuleById(int ruleId);
+
+    /**
+     * 开启采集任务
+     * @param rule
+     */
+    public void startupTask(SpiderRule rule);
+
 }

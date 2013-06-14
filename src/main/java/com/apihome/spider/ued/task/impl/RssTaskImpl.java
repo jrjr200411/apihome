@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.apihome.model.ued.RssPO;
 import com.apihome.spider.ued.common.HttpClientFactory;
-import com.apihome.spider.ued.constant.UcdConstant;
+import com.apihome.spider.ued.constant.UedConstant;
 import com.apihome.spider.ued.task.RssTask;
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndContent;
@@ -93,7 +93,7 @@ public class RssTaskImpl implements RssTask
     {
         try
         {
-            rss = rss.contains(UcdConstant.HTTP)?rss:UcdConstant.HTTP+rss;
+            rss = rss.contains(UedConstant.HTTP)?rss:UedConstant.HTTP+rss;
             String xml = HttpClientFactory.spiderHtml(rss);
             InputStream stream = StringTool.StringTOInputStream(xml);
             XmlReader reader = new XmlReader(stream);

@@ -6,13 +6,17 @@ import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
 import net.paoding.rose.web.annotation.rest.Post;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.apihome.model.ued.Admin;
 import com.apihome.spider.ued.model.SpiderRule;
 import com.apihome.spider.ued.model.SpiderRuleBO;
 import com.apihome.spider.ued.service.SpiderRuleService;
 import com.apihome.web.ued.constants.WebConstant;
 import com.xframework.pagination.PageView;
+import com.xframework.tools.RegexTool;
 
 /**
  * @ClassName: SpiderUedController
@@ -67,4 +71,23 @@ public class SpiderUedController
         inv.addModel("pageView", page);
 		return "admin_spider_list";
 	}
+    
+    /**
+     * 爬虫任务
+     * @param inv
+     * @return
+     */
+    @Get("/spiderTask")
+    public String spiderTask(Invocation inv, 
+            @Param("pageFrom") int pageFrom,
+            @Param("pageTo") int pageTo,
+            @Param("ruleId") int ruleId)
+    {
+        SpiderRule rule = spiderRuleService.querySpiderRuleById(ruleId);
+        rule.setPageFrom(pageFrom);
+        rule.setPageTo(pageTo);
+        spiderRuleService.startupTask(rule);
+        
+        return "@新增失败～～～";
+    }
 }

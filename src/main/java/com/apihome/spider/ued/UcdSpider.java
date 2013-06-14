@@ -11,8 +11,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.apihome.spider.ued.constant.UcdConstant;
-import com.apihome.spider.ued.task.SpiderTask;
+import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.apihome.spider.ued.task.impl.UcdArticleTaskImpl;
 import com.apihome.spider.ued.task.impl.UcdTopicTaskImpl;
 import com.xframework.tools.StringTool;
@@ -60,9 +60,9 @@ public class UcdSpider
     	
     	for (int i = begin; i < 1000000; i++) 
     	{
-    		if (UcdConstant.UCDCHINA_ARTICLE_SPIDER_FLAG) 
+    		if (UedConstant.UCDCHINA_ARTICLE_SPIDER_FLAG) 
     		{
-        		urls.add(UcdConstant.UCDCHINA_DOMAIN + "/post/" + i);
+        		urls.add(UedConstant.UCDCHINA_DOMAIN + "/post/" + i);
         		this.ucdArticleTask(urls);
         		urls.clear();
 			}
@@ -105,9 +105,9 @@ public class UcdSpider
     	int begin = Integer.valueOf(StringTool.isBlank(lastEnd) ? "0" : lastEnd);
     	for (int i = begin; i < 1000000; i++) 
     	{
-    		if (UcdConstant.UCDCHINA_TOPIC_SPIDER_FLAG) 
+    		if (UedConstant.UCDCHINA_TOPIC_SPIDER_FLAG) 
     		{
-        		urls.add(UcdConstant.UCDCHINA_DOMAIN + "/topic/" + i);
+        		urls.add(UedConstant.UCDCHINA_DOMAIN + "/topic/" + i);
         		this.ucdTopicTask(urls);
         		urls.clear();
 			}
@@ -145,7 +145,7 @@ public class UcdSpider
      * @param task
      * @param url
      */
-    public void newSpiderTaskThread(final SpiderTask task, final String url)
+    public void newSpiderTaskThread(final DiscardSpiderTask task, final String url)
     {
     	spiderThreadPool.execute(new Runnable()
         {

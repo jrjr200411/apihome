@@ -1,12 +1,20 @@
 package com.apihome.spider.ued.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 常量类
  * @author david.wang
  *
  */
-public class UcdConstant 
+public class UedConstant 
 {
+    // 默认注解扫描包
+    public static final String SCAN_PACKAGE = "com.apihome.spider.ued.task.impl";
+    // 
+    public static final Map<String, String> URL_MAPPING_MAP = new HashMap<String, String>();
+    
 	public static final String HTTP = "http://";
 	
 	public static final String UCDCHINA_DOMAIN = "http://ucdchina.com";
@@ -29,4 +37,8 @@ public class UcdConstant
 	public static final String GOOGLE_SERACH = "http://www.google.com.hk";
 	
 	public static final String USER_AGENT = "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1.2)";
+
+	
+	public static final int DEFAULT_START_PAGE_NUM = 1;
+
 }

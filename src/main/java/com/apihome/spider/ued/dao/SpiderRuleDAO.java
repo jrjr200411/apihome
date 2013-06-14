@@ -3,7 +3,6 @@ package com.apihome.spider.ued.dao;
 import java.util.List;
 
 import net.paoding.rose.jade.annotation.DAO;
-import net.paoding.rose.jade.annotation.ReturnGeneratedKeys;
 import net.paoding.rose.jade.annotation.SQL;
 
 import com.apihome.spider.ued.model.SpiderRule;
@@ -21,4 +20,7 @@ public interface SpiderRuleDAO
 
     @SQL("select * from t_spider_rule limit :1,:2")
 	public List<SpiderRule> queryListByPage(int start, int size);
+
+    @SQL("select * from t_spider_rule where id = :1")
+    public SpiderRule querySpiderRuleById(int ruleId);
 }

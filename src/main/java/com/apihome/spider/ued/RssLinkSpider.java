@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.apihome.spider.ued.constant.UcdConstant;
-import com.apihome.spider.ued.task.SpiderTask;
+import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.apihome.spider.ued.task.impl.SearchRssTaskImpl;
 
 /**
@@ -49,7 +49,7 @@ public class RssLinkSpider {
      */
 	public void rssLinkTask() {
 		List<String> urls = new ArrayList<String>();
-		for (int i = 0; i < UcdConstant.SEARCH_LOOP_INT; i++) {
+		for (int i = 0; i < UedConstant.SEARCH_LOOP_INT; i++) {
 			urls.add(sosoUrl(keyWord, i + 1));
 			urls.add(soUrl(keyWord, i + 1));
 			urls.add(baiduUrl(keyWord, i + 1));
@@ -93,7 +93,7 @@ public class RssLinkSpider {
 	 * @param task
 	 * @param url
 	 */
-	public void newSpiderTaskThread(final SpiderTask task, final String url) {
+	public void newSpiderTaskThread(final DiscardSpiderTask task, final String url) {
 		spiderThreadPool.execute(new Runnable() {
 			public void run() {
 				searchRssTaskImpl.spiderHtml(url);

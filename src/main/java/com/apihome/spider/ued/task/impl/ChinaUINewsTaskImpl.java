@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 import com.apihome.dao.ued.UcdDAO;
 import com.apihome.spider.ued.common.HttpClientFactory;
-import com.apihome.spider.ued.task.SpiderTask;
+import com.apihome.spider.ued.task.DiscardSpiderTask;
 
 /**
  * @ClassName: ChinaUINewsTaskImpl 
@@ -32,7 +32,7 @@ import com.apihome.spider.ued.task.SpiderTask;
  * @version 1.0
  */
 @Component("chinaUINewsTaskImpl")
-public class ChinaUINewsTaskImpl implements SpiderTask 
+public class ChinaUINewsTaskImpl implements DiscardSpiderTask 
 {
 	protected static Log logger = LogFactory.getLog(ChinaUINewsTaskImpl.class);
 

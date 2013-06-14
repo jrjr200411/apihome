@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 import com.apihome.dao.ued.RssDAO;
 import com.apihome.model.ued.LinkPO;
 import com.apihome.spider.ued.common.HttpClientFactory;
-import com.apihome.spider.ued.constant.UcdConstant;
-import com.apihome.spider.ued.task.SpiderTask;
+import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.xframework.tools.RegexTool;
 import com.xframework.tools.StringTool;
 
@@ -34,7 +34,7 @@ import com.xframework.tools.StringTool;
  * @version 1.0
  */
 @Component("searchRssTaskImpl")
-public class SearchRssTaskImpl implements SpiderTask 
+public class SearchRssTaskImpl implements DiscardSpiderTask 
 {
 	protected static Log logger = LogFactory.getLog(SearchRssTaskImpl.class);
 	@Autowired
@@ -50,26 +50,26 @@ public class SearchRssTaskImpl implements SpiderTask
 		{
 	        HttpClient client = HttpClientFactory.getHttpClient();
 	        HttpGet get = new HttpGet(url);
-	        get.setHeader("User-Agent", UcdConstant.USER_AGENT);
+	        get.setHeader("User-Agent", UedConstant.USER_AGENT);
 	        HttpResponse response = client.execute(get);
 	        HttpEntity entity = response.getEntity();
 	        String html = EntityUtils.toString(entity, "UTF-8");
 	        get.abort();//释放链接
 			Document doc = Jsoup.parse(html);
 
-			if (url.contains(UcdConstant.SOSO_SERACH)) 
+			if (url.contains(UedConstant.SOSO_SERACH)) 
 			{
 				this.sosoParse(doc);
 			}
-			else if(url.contains(UcdConstant.SO_SERACH))
+			else if(url.contains(UedConstant.SO_SERACH))
 			{
 				this.soParse(doc);
 			}
-			else if(url.contains(UcdConstant.GOOGLE_SERACH))
+			else if(url.contains(UedConstant.GOOGLE_SERACH))
 			{
 				this.googleParse(doc);
 			}
-			else if(url.contains(UcdConstant.BAIDU_SERACH))
+			else if(url.contains(UedConstant.BAIDU_SERACH))
 			{
 				this.baiduParse(doc);
 			}
@@ -93,7 +93,7 @@ public class SearchRssTaskImpl implements SpiderTask
 		for (int i = 0; i < list.size(); i++) 
 		{
 			String href = list.get(i).attr("href");		
-			pos = this.getAllRssLinks(href, UcdConstant.BAIDU_SERACH);
+			pos = this.getAllRssLinks(href, UedConstant.BAIDU_SERACH);
 		}
 		
 		if (pos.size() > 0) 
@@ -115,7 +115,7 @@ public class SearchRssTaskImpl implements SpiderTask
 		for (int i = 0; i < list.size(); i++) 
 		{
 			String href = list.get(i).attr("href");
-			pos = this.getAllRssLinks(href, UcdConstant.GOOGLE_SERACH);
+			pos = this.getAllRssLinks(href, UedConstant.GOOGLE_SERACH);
 		}
 		
 		if (pos.size() > 0) 
@@ -137,11 +137,11 @@ public class SearchRssTaskImpl implements SpiderTask
 		for (int i = 0; i < list.size(); i++) 
 		{
 			String href = list.get(i).attr("href");
-			if (!href.contains(UcdConstant.HTTP)) 
+			if (!href.contains(UedConstant.HTTP)) 
 			{
 				href = "http://www.so.com"+href;
 			}
-			pos = this.getAllRssLinks(href, UcdConstant.SO_SERACH);
+			pos = this.getAllRssLinks(href, UedConstant.SO_SERACH);
 		}
 		
 		if (pos.size() > 0) 
@@ -163,7 +163,7 @@ public class SearchRssTaskImpl implements SpiderTask
 		for (int i = 0; i < list.size(); i++) 
 		{
 			String href = list.get(i).attr("href");
-			pos = this.getAllRssLinks(href, UcdConstant.SOSO_SERACH);
+			pos = this.getAllRssLinks(href, UedConstant.SOSO_SERACH);
 		}
 		
 		if (pos.size() > 0) 
@@ -202,11 +202,11 @@ public class SearchRssTaskImpl implements SpiderTask
 					    
 					    if ((rss.substring(0, 1)).equals("/"))
                         {
-					        rss = UcdConstant.HTTP+RegexTool.getDomain(url) + rss;
+					        rss = UedConstant.HTTP+RegexTool.getDomain(url) + rss;
                         }
 					    else 
 					    {
-					        rss = UcdConstant.HTTP+RegexTool.getDomain(url) +"/"+ rss;
+					        rss = UedConstant.HTTP+RegexTool.getDomain(url) +"/"+ rss;
                         }
                     }
 					

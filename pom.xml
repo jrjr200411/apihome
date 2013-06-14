@@ -192,6 +192,18 @@
 			    <artifactId>java-image-scaling</artifactId>
 			    <version>0.8.5</version>
 			</dependency>
+			
+			<dependency>
+			    <groupId>org.jooq</groupId>
+			    <artifactId>joor</artifactId>
+			    <version>0.9.3</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.reflections</groupId>
+			    <artifactId>reflections</artifactId>
+			    <version>0.9.9-RC1</version>
+			</dependency>
 		</dependencies>
 		<build>
 			<resources>
