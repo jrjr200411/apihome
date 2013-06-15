@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 
+import com.apihome.web.ued.constants.WebConstant;
 import com.mortennobel.imagescaling.ResampleOp;
 
 /**
@@ -28,12 +29,12 @@ public class ImageTool
      * @param height
      * @throws IOException
      */
-    public static void resizeImage(String filePath, int width, int height) throws IOException
+    public static String resizeImage(String filePath, int width, int height) throws IOException
     {
         File f = new File(filePath);
         BufferedImage src = ImageIO.read(f);
         String fileName = f.getName();
-        String targetName = "001" + fileName;
+        String targetName = WebConstant.THUMBNAIL + fileName;
         String targetPath = f.getPath().replace(fileName, targetName);
         int sHeight = src.getHeight();
         int sWidth = src.getWidth();
@@ -65,6 +66,8 @@ public class ImageTool
             BufferedImage fImage = fillerImage(rescaled, width, height, true);
             ImageIO.write(fImage, "JPG", new File(targetPath));
         }
+        
+        return targetPath;
     }
     
     /**

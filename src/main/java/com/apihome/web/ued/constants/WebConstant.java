@@ -32,11 +32,29 @@ public class WebConstant
     // 签约用户
     public static final int USER_STATUS_SIGN = 9;
 
-    
     // 默认点数
     public static final int DEFAULT_POINT = 0;
     
     // 初始化点数
     public static final int INIT_POINT = 100;
     
+    /******文章类型*******/
+    public static final int ARTICLE_KIND_TEAM = 1;
+    
+    public static final int ARTICLE_KIND_PERSON = 2;
+    
+    /*******文章状态******/
+    public static final int ARTICLE_STATUS_NORMAL = 1;
+    
+    public static final int ARTICLE_STATUS_DELETE = -1;
+    
+    /*******图片保存路径*******/
+    public static final String IMGS_SAVE_PATH = "/opt/images";
+    
+    /*******缩略图*******/
+    public static final int IMG_WIDTH = 720;
+    
+    public static final int IMG_HEIGHT = 255;
+    
+    public static final String THUMBNAIL = "thumbnail_";
 }

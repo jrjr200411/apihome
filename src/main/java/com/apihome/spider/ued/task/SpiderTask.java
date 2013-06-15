@@ -1,5 +1,10 @@
 package com.apihome.spider.ued.task;
 
+import java.util.List;
+
+import org.jsoup.select.Elements;
+
+import com.apihome.model.ued.Article;
 import com.apihome.spider.ued.model.SpiderRule;
 
 /**
@@ -12,4 +17,8 @@ import com.apihome.spider.ued.model.SpiderRule;
 public interface SpiderTask
 {
     public void startup(SpiderRule rule);
+
+    public List<Article> parseListView(Elements elements);
+
+    public void parseDetailView(Article article);
 }

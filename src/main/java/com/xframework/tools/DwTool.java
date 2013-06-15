@@ -109,16 +109,20 @@ public class DwTool
      * @param fileDes
      * @throws Exception
      */
-    public static void batchSaveFile(String[] fileUrlArr,String fileDesPath) throws Exception
+    public static List<String> batchSaveFile(List<String> fileUrlList,String fileDesPath) throws Exception
     {
-        if (fileUrlArr.length > 0)
+    	List<String> desList = new ArrayList<String>();
+        if (fileUrlList.size() > 0)
         {
-            for (int i = 0; i < fileUrlArr.length; i++)
+            for (int i = 0; i < fileUrlList.size(); i++)
             {
-                String fileDes = fileDesPath+fileUrlArr[i].substring(fileUrlArr[i].lastIndexOf("/"));
-                loadPage(fileUrlArr[i], fileDes);
+                String fileDes = fileDesPath+fileUrlList.get(i).substring(fileUrlList.get(i).lastIndexOf("/"));
+                desList.add(fileDes);
+                loadPage(fileUrlList.get(i), fileDes);
             }
         }
+        
+        return desList;
     }
     
     
@@ -159,10 +163,7 @@ public class DwTool
             list.add("http://b.hiphotos.baidu.com/album/w%3D2048/sign=187b9ec2a044ad342ebf8087e49a0df4/ae51f3deb48f8c541db6f9003b292df5e0fe7fb3.jpg");
             list.add("http://www.baidu.com/img/baidu_jgylogo3.gif");
             
-            String[] l = new String[list.size()];  
-            list.toArray(l);  
-            
-            batchSaveFile(l, "/opt");
+            batchSaveFile(list, "/opt");
         } 
         catch (Exception e) 
         {
