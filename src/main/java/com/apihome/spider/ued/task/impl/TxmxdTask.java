@@ -155,9 +155,8 @@ public class TxmxdTask implements SpiderTask
     	try
 		{
             Document doc = Jsoup.connect(art.getSurl()).get();
-            Elements elements = doc.select("section");
             Element body = doc.select("body").get(0);
-            Element section = elements.get(0);
+            Element section = doc.select("section").get(0);
             Element content = section.select("div.content").get(0);
             Element article = content.select("article").get(0);
             Element blog = content.select("div.blog-content").get(0);
@@ -189,7 +188,6 @@ public class TxmxdTask implements SpiderTask
                 		WebConstant.IMG_WIDTH, WebConstant.IMG_HEIGHT);
                 art.setThumbnail(targetPath);
 			}
-
 		} 
     	catch (Exception e)
 		{
