@@ -1,6 +1,6 @@
-    <div class="page">
+    <div class="">
         <div class="nav-bar">
-            <div class="nav-bar-inner padding10">
+            <div class="nav-bar-inner padding10" style="width:600px; margin:0 auto;">
                 <span class="element">
                     2012, Metro UI CSS &copy; by <a class="fg-color-white" href="mailto:sergey@pimenov.com.ua">Sergey Pimenov</a>
                 </span>

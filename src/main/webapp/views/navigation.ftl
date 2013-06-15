@@ -1,6 +1,6 @@
-<div class="page">
+<div class="">
 <div class="nav-bar">
-    <div class="nav-bar-inner padding10">
+    <div class="nav-bar-inner padding10" style="width:750px; margin:0 auto;">
         <span class="pull-menu"></span>
 
         <a href="/">
