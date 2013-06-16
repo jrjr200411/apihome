@@ -6,17 +6,13 @@ import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
 import net.paoding.rose.web.annotation.rest.Post;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.apihome.model.ued.Admin;
 import com.apihome.spider.ued.model.SpiderRule;
 import com.apihome.spider.ued.model.SpiderRuleBO;
 import com.apihome.spider.ued.service.SpiderRuleService;
 import com.apihome.web.ued.constants.WebConstant;
 import com.xframework.pagination.PageView;
-import com.xframework.tools.RegexTool;
 
 /**
  * @ClassName: SpiderUedController
@@ -64,6 +60,19 @@ public class SpiderUedController
 	 * @return String    返回类型 
 	 * @throws
 	 */
+    @Get("/list")
+	public String queryRules()
+	{
+		return "r:/spiderUed/list/1";
+	}
+	
+	/**
+	 * @Title: queryRules 
+	 * @Description: TODO(这里用一句话描述这个方法的作用) 
+	 * @param @return    设定文件 
+	 * @return String    返回类型 
+	 * @throws
+	 */
     @Get("/list/{pageNo:([0-9]+)}")
 	public String queryRules(Invocation inv, @Param("pageNo") int pageNo)
 	{
@@ -86,8 +95,8 @@ public class SpiderUedController
         SpiderRule rule = spiderRuleService.querySpiderRuleById(ruleId);
         rule.setPageFrom(pageFrom);
         rule.setPageTo(pageTo);
-        spiderRuleService.startupTask(rule);
+        //spiderRuleService.startupTask(rule);
         
-        return "@新增失败～～～";
+        return "@任务开启成功～～～";
     }
 }

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="/js/modern/tile-slider.js"></script>
     <script type="text/javascript" src="/js/modern/tile-drag.js"></script>
     <script type="text/javascript" src="/js/modern/calendar.js"></script>
+    <script type="text/javascript" src="/js/modern/dialog.js"></script>
     
     <script type="text/javascript" src="/js/assets/github.info.js"></script>
     <script type="text/javascript" src="/js/assets/google-analytics.js"></script>

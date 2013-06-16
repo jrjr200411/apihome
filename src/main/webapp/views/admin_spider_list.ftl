@@ -36,7 +36,7 @@
 		                        	<a href="/spiderUed/delete?id=${rule.id?string}"><i class="icon-cancel"></i></a>
 		                        	&nbsp;
 		                        	<#if rule.status == 0>
-                                    <a href="/spiderUed/setting?id=${rule.id?string}"><i class="icon-cog"></i></a>
+                                    <a href="javascript:void(0);" class="settingOpt" id="${rule.id?string}"><i class="icon-cog"></i></a>
                                     </#if>
 		                        </td>
 	                        </tr>
@@ -53,4 +53,5 @@
         </div>
     </div>
 </div>
-<#include "/views/footer.ftl"> 
+<#include "/views/footer.ftl">
+<script type="text/javascript" src="/js/apihome/admin_spider_list.js"></script>
