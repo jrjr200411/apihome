@@ -22,7 +22,7 @@ public class JsoupDemo
     public static void main(String[] args) throws IOException
     {
 
-        uxcTest();
+        designmodoTest();
     }
 
     public static void mxdTest() throws IOException
@@ -35,7 +35,7 @@ public class JsoupDemo
         Element content = section.select("div.content").get(0);
         Element article = content.select("article").get(0);
         Element blog = content.select("div.blog-content").get(0);
-        
+
         article.empty();
         article.append(blog.outerHtml());
         content.empty();
@@ -112,6 +112,38 @@ public class JsoupDemo
         String href = css.attr("href");
         href = "http://uxc.360.cn" + href;
         css.attr("href", href);
+        
+        System.err.println(doc.html());
+    }
+    
+    public static void designmodoTest() throws IOException
+    {
+        Document doc = Jsoup.connect("http://designmodo.com/interview-daryl-ginn/").get();
+        Element body = doc.select("body").get(0);
+        
+        Element main =  doc.select("div#main-wrapper").get(0);
+        Element content = main.select("div#content-wrapper").get(0);
+        Element article = content.select("div.articles-container").get(0);
+        Element blog = content.select("div.article-single").get(0);
+
+        article.empty();
+        article.append(blog.outerHtml());
+        article.attr("style", "width:90%;");
+        content.empty();
+        content.append(article.outerHtml());
+        content.attr("style", "width:680px;");
+        main.empty();
+        main.append(content.outerHtml());
+   
+        body.empty();
+        body.append(main.outerHtml());
+        body.attr("style", "background:white;");
+
+        Elements scripts = doc.select("script");
+        for (Element script : scripts)
+        {
+            script.remove();
+        }
         
         System.err.println(doc.html());
     }

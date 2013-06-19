@@ -9,7 +9,7 @@ import com.apihome.model.ued.Article;
 import com.apihome.model.ued.ArticleTag;
 
 @DAO
-public interface ArticleDAO 
+public interface ArticleDAO extends JadeDAO
 {
 	@SQL("insert ignore into t_ued_article(surl, encode_surl, title, author, pub_time, kind, status, summary, content, create_time, thumbnail) values" +
 			" (:1.surl, :1.encodeSurl, :1.title, :1.author, NOW(), :1.kind, :1.status, :1.summary, :1.content, :1.createTime, :1.thumbnail)")

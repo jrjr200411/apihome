@@ -49,7 +49,7 @@ public class MutliParseTool
 			list.addAll(t.parseListView(elements));
 			for (int index = 0; index < size; index++)
 			{
-				final int no = index + 1; 
+				final int no = index; 
 				spiderThreadPool.execute(new Runnable()
 				{
 					public void run()
@@ -75,7 +75,6 @@ public class MutliParseTool
 			} 
 			catch (InterruptedException e)
 			{
-
 				logger.error("-------CountDownLatch InterruptedException------", e);
 			}
 		}

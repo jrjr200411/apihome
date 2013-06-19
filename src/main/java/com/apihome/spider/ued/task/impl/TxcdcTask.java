@@ -6,15 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.apihome.dao.ued.ArticleDAO;
+import com.apihome.dao.ued.JadeDAO;
 import com.apihome.model.ued.Article;
 import com.apihome.model.ued.ArticleTag;
 import com.apihome.spider.ued.annotation.HashUrl;
@@ -27,17 +26,13 @@ import com.xframework.tools.ImageTool;
 import com.xframework.tools.MutliParseTool;
 import com.xframework.tools.StringTool;
 
-@Component("txcdcTask")
 @HashUrl(md5="http://cdc.tencent.com") //http://cdc.tencent.com/?paged=
-public class TxcdcTask implements SpiderTask
+public class TxcdcTask extends SpiderTask
 {
     private static Logger logger = Logger.getLogger(TxcdcTask.class);
-	
-    @Autowired
-    private ArticleDAO articleDAO;
     
     @Override
-    public void startup(SpiderRule rule)
+    public void startup(SpiderRule rule, JadeDAO dao)
     {
     	Set<String> urlSet = new HashSet<String>();
         int pageFrom = rule.getPageFrom();
@@ -64,7 +59,7 @@ public class TxcdcTask implements SpiderTask
 				Document doc = Jsoup.connect(urlStr).get();
 		        Elements elements = doc.select("div.content_text");
 		        List<Article> arts = MutliParseTool.mutliParse(elements, this);
-		        this.saveArticles(arts);
+		        this.saveArticles(arts, dao);
 			} 
             catch (IOException e)
 			{
@@ -97,7 +92,7 @@ public class TxcdcTask implements SpiderTask
 				for (int i = 0; i < tagArr.length; i++)
 				{
 					ArticleTag articleTag = new ArticleTag();
-					articleTag.setTag(tagArr[i]);
+					articleTag.setTag(StringUtils.trim(tagArr[i]));
 					articleTag.setEncodeSurl(StringTool.hashString(url));
 					tagList.add(articleTag);
 				}
@@ -107,8 +102,8 @@ public class TxcdcTask implements SpiderTask
        		article.setSurl(url);
        		article.setEncodeSurl(StringTool.hashString(url));
        		article.setTitle(title);
-       		article.setAuthor(arr[0]);
-       		article.setCreateTime(DateTool.convert(arr[2], "yyyy.MM.dd"));
+       		article.setAuthor(StringUtils.trim(arr[0]));
+       		article.setCreateTime(DateTool.convert(StringUtils.trim(arr[2]), "yyyy.MM.dd"));
        		article.setSummary(summary);
        		article.setKind(WebConstant.ARTICLE_KIND_TEAM);
        		article.setStatus(WebConstant.ARTICLE_STATUS_NORMAL);
@@ -147,6 +142,12 @@ public class TxcdcTask implements SpiderTask
             body.append(section.outerHtml());
             body.attr("style", "background:white;");
             
+            Elements scripts = doc.select("script");
+            for (Element script : scripts)
+            {
+                script.remove();
+            }
+            
             art.setContent(doc.html());
             
             List<String> list = new ArrayList<String>();
@@ -170,30 +171,5 @@ public class TxcdcTask implements SpiderTask
 		}
 	}
     
-    /**
-     * @Title: saveArticles 
-     * @Description: TODO(这里用一句话描述这个方法的作用) 
-     * @param @param arts    设定文件 
-     * @return void    返回类型 
-     * @throws
-     */
-    public void saveArticles(List<Article> arts)
-	{
-    	List<Article> articles = new ArrayList<Article>();
-    	List<ArticleTag> tags = new ArrayList<ArticleTag>();
-    	for (Article article : arts)
-		{
-			articles.add(article);
-			tags.addAll(article.getTags());
-		}
-    	
-    	if (articles.size() > 0)
-		{
-			articleDAO.saveArticles(articles);
-			if (tags.size() > 0)
-			{
-				articleDAO.saveArticleTags(tags);
-			}
-		}
-	}
+
 }

@@ -6,21 +6,26 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 /**
- * @ClassName: DateTool 
- * @Description: TODO(时间工具类) 
- * @author david.wang 
- * @date 2013-1-2 下午8:55:17 
+ * @ClassName: DateTool
+ * @Description: TODO(时间工具类)
+ * @author david.wang
+ * @date 2013-1-2 下午8:55:17
  * @version 1.0
  */
 public class DateTool
 {
+    private static Logger logger = Logger.getLogger(DateTool.class);
+    
     /** 常规时间格式 */
     public static String NORMALFORMAT = "yyyy-MM-dd HH:mm";
 
+    
+    
     /**
      * 根据传入的格式获取日期
      * 
@@ -39,24 +44,26 @@ public class DateTool
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            logger.error("-----getSysDate Exception-----", e);
         }
         return dateStr;
     }
+
     /**
-	   * 获取英文日期
-	   * @author david.wang
-	   * @version 3.7.0.0
-	   * @time 2011-10-9 下午05:10:51
-	   * @return [参数说明]
-	   */
-	  public static String getEDate() 
-	  {
-	        Date date = new Date();
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM, yyyy",Locale.US);
-	        String times = sdf.format(date);
-	        return times;
-	 }
+     * 获取英文日期
+     * @author david.wang
+     * @version 3.7.0.0
+     * @time 2011-10-9 下午05:10:51
+     * @return [参数说明]
+     */
+    public static String getUSDate()
+    {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM, yyyy", Locale.US);
+        String times = sdf.format(date);
+        return times;
+    }
+
     /**
      * 根据传入的格式获取日期
      * 
@@ -74,7 +81,7 @@ public class DateTool
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            logger.error("-----getFormatDate Exception-----", e);
         }
         return dateStr;
     }
@@ -96,7 +103,7 @@ public class DateTool
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            logger.error("-----getNormalFormatDate Exception-----", e);
         }
         return dateStr;
     }
@@ -118,21 +125,9 @@ public class DateTool
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            logger.error("-----getNormalSysDate Exception-----", e);
         }
         return dateStr;
-    }
-
-    /**
-     * 获取分割后的字符串数组信息
-     * 
-     * @param Str
-     * @param Split
-     * @return 字符串数组
-     */
-    public String[] getSplit(String Str, String Split)
-    {
-        return Str.split(Split);
     }
 
     /**
@@ -144,19 +139,50 @@ public class DateTool
      */
     public static Date convert(String str, String format)
     {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(format, Locale.CHINA);
-        try
+        if (StringUtils.isNotBlank(str) && StringUtils.isNotBlank(format))
         {
-            java.util.Date d = sdf.parse(str);
-            return d;
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(format, Locale.CHINA);
+            try
+            {
+                java.util.Date d = sdf.parse(str);
+                return d;
+            }
+            catch (Exception ex)
+            {
+                logger.error("-----convert Exception-----", ex);
+            }
         }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-            return null;
-        }
+        
+        return null;
     }
 
+    /**
+     * 把字符串转换成指定的日期格式
+     * @param str
+     * @param format
+     * @param locale
+     * @return
+     */
+    public static Date convert(String str, String format, Locale locale)
+    {
+        if (StringUtils.isNotBlank(str) && StringUtils.isNotBlank(format))
+        {
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(format, locale);
+            try
+            {
+                java.util.Date d = sdf.parse(str);
+                return d;
+            }
+            catch (Exception ex)
+            {
+                logger.error("-----convert Exception-----", ex);
+            }
+        }
+
+        return null;
+    }
+    
+    
     /**
      * 把字符串转换成yyyy-MM-dd格式的日期对象
      * 
@@ -196,7 +222,7 @@ public class DateTool
     /**
      * 给日期增加天数
      * 
-     * */
+     */
     public static Date addDateByDay(Date addDate, int days)
     {
         if (addDate == null)
@@ -210,6 +236,12 @@ public class DateTool
         return addDate;
     }
 
+    /**
+     * 
+     * @param addDate
+     * @param days
+     * @return
+     */
     public static Date addDate(Date addDate, int days)
     {
         if (addDate == null)
@@ -242,9 +274,6 @@ public class DateTool
         return addDate;
     }
 
-    /**
-	 * 
-	 * */
     /**
      * 获取月的天数
      * 
@@ -296,7 +325,6 @@ public class DateTool
 
     /**
      * 判断闰年
-     * 
      * @param year
      * @return
      */
@@ -314,7 +342,6 @@ public class DateTool
 
     /**
      * 判断某天是星期几
-     * 
      * @param strDate
      * @return 0 表示是星期天
      */
@@ -332,26 +359,9 @@ public class DateTool
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            logger.error("-----getWeekByDate Exception-----", e);
         }
         return dayOfWeek - 1;
-    }
-
-    /**
-     * 判断字符串是不是数字
-     * 
-     * @param str
-     * @return
-     */
-    public static boolean isNumeric(String str)
-    {
-        Pattern pattern = Pattern.compile("[0-9]*");
-        Matcher isNum = pattern.matcher(str);
-        if (!isNum.matches())
-        {
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -377,11 +387,10 @@ public class DateTool
         return datestr;
     }
 
-    /***************************************************************************
+    /**
      * 根据两个时间判断时间差
      * @throws ParseException
-     * @throws ParseException
-     **************************************************************************/
+     */
     public Long getDateDifference(Date date1, Date date2) throws ParseException
     {
         // Date date1 = new SimpleDateFormat("yyyy-mm-dd").parse("2008-3-31");
@@ -394,7 +403,7 @@ public class DateTool
 
     }
 
-    /***************************************************************************
+    /**
      * 根据两个时间来判断时间的差值
      * @param days
      * @return
@@ -406,7 +415,7 @@ public class DateTool
         return day;
     }
 
-    /***************************************************************************
+    /**
      * 返回当前时间的一个时间差时间
      * @param days
      * @return
@@ -421,7 +430,7 @@ public class DateTool
         return form.format(cc);
     }
 
-    /*************************************************************************
+    /**
      * 获取系统当前时间
      */
     public static Date getSystemDate()
@@ -439,132 +448,6 @@ public class DateTool
     }
 
     /**
-     * 判断是否为整数
-     * 
-     * @param str 传入的字符串
-     * @return 是整数返回true,否则返回false
-     */
-    public static boolean isInteger(String str)
-    {
-        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-        return pattern.matcher(str).matches();
-    }
-
-    /**
-     * 判断是否为浮点数，包括double和float
-     * 
-     * @param str 传入的字符串
-     * @return 是浮点数返回true,否则返回false
-     */
-    public static boolean isDouble(String str)
-    {
-        Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
-        return pattern.matcher(str).matches();
-    }
-
-    /**
-     * 判断输入的字符串是否符合Email样式.
-     * 
-     * @param str 传入的字符串
-     * @return 是Email样式返回true,否则返回false
-     */
-    public static boolean isEmail(String str)
-    {
-        Pattern pattern = Pattern.compile("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$");
-        return pattern.matcher(str).matches();
-    }
-
-    /**
-     * 判断输入的字符串是否为纯汉字
-     * 
-     * @param str 传入的字符窜
-     * @return 如果是纯汉字返回true,否则返回false
-     */
-    public static boolean isChinese(String str)
-    {
-        Pattern pattern = Pattern.compile("[\u0391-\uFFE5]+$");
-        return pattern.matcher(str).matches();
-    }
-
-    /**
-     * 是否为空白,包括null和""
-     * 
-     * @param str
-     * @return
-     */
-    public static boolean isBlank(String str)
-    {
-        return str == null || str.trim().length() == 0;
-    }
-
-    /**
-     * 判断是否为质数
-     * 
-     * @param x
-     * @return
-     */
-    public static boolean isPrime(int x)
-    {
-        if (x <= 7)
-        {
-            if (x == 2 || x == 3 || x == 5 || x == 7)
-                return true;
-        }
-        int c = 7;
-        if (x % 2 == 0)
-            return false;
-        if (x % 3 == 0)
-            return false;
-        if (x % 5 == 0)
-            return false;
-        int end = (int) Math.sqrt(x);
-        while (c <= end)
-        {
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 4;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 2;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 4;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 2;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 4;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 6;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 2;
-            if (x % c == 0)
-            {
-                return false;
-            }
-            c += 6;
-        }
-        return true;
-    }
-
-    /**
      * <获取当前年份> <功能详细描述>
      * @return [参数说明]
      * 
@@ -579,71 +462,78 @@ public class DateTool
         String year = "" + ca.get(Calendar.YEAR);
         return year;
     }
-    
+
     /**
      * 获取现在开始的距离现在n天的日期
      * 
-     * @param distanceDay 相距的天数    之前：负数 之后 ：正数
+     * @param distanceDay 相距的天数 之前：负数 之后 ：正数
      * @return 处理后的日期
      * */
-    public static Date getDateMinus(int distanceDay){
-        Calendar calendar=Calendar.getInstance();
+    public static Date getDateMinus(int distanceDay)
+    {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DATE, distanceDay);
         return calendar.getTime();
     }
-    
+
+    /**
+     * 显示处理多少时间之前
+     * @param date
+     * @return
+     */
     public static String getDateStringFromNow(Date date)
     {
-    	String bDateStr = "";
-    	if (null !=date) 
-    	{
-	        Calendar c1 = Calendar.getInstance();
-	        long now = c1.getTimeInMillis();
-	        c1.clear();
-	        c1.setTime(date);
-	        long dateCompare = c1.getTimeInMillis();
-	        long blance = now - dateCompare;
-	        long bSec = blance / 1000;
-	        long bMin = bSec / 60;
-	        long bHour = bMin / 60;
-	        long bDay = bHour / 24;
-	        long bMonth = bDay / 30;
-	        if (bMonth > 0)
-	        {
-	            bDateStr = bMonth + "个月前";
-	        }
-	        else if (bDay > 0)
-	        {
-	            bDateStr = bDay + "天前";
-	        }
-	        else if (bHour > 0)
-	        {
-	            bDateStr = bHour + "小时前";
-	        }
-	        else if (bMin > 0)
-	        {
-	            bDateStr = bMin + "分钟前";
-	        }
-	        else if (bSec > 0)
-	        {
-	            bDateStr = bSec + "秒前";
-	        }
-	        else
-	        {
-	            bDateStr = "1秒前";
-	        }
-    	}else {
-			return "";
-		}
+        String bDateStr = "";
+        if (null != date)
+        {
+            Calendar c1 = Calendar.getInstance();
+            long now = c1.getTimeInMillis();
+            c1.clear();
+            c1.setTime(date);
+            long dateCompare = c1.getTimeInMillis();
+            long blance = now - dateCompare;
+            long bSec = blance / 1000;
+            long bMin = bSec / 60;
+            long bHour = bMin / 60;
+            long bDay = bHour / 24;
+            long bMonth = bDay / 30;
+            if (bMonth > 0)
+            {
+                bDateStr = bMonth + "个月前";
+            }
+            else if (bDay > 0)
+            {
+                bDateStr = bDay + "天前";
+            }
+            else if (bHour > 0)
+            {
+                bDateStr = bHour + "小时前";
+            }
+            else if (bMin > 0)
+            {
+                bDateStr = bMin + "分钟前";
+            }
+            else if (bSec > 0)
+            {
+                bDateStr = bSec + "秒前";
+            }
+            else
+            {
+                bDateStr = "1秒前";
+            }
+        }
+        else
+        {
+            return "";
+        }
         return bDateStr;
     }
-
-    public static boolean isMobile(String str){
-        Pattern pattern = Pattern.compile("^(0?1[358]\\d{9})$|^((0(10|2[1-3]|[3-9]\\d{2}))?[1-9]\\d{6,7})$");
-        return pattern.matcher(str).matches();
+    
+    public static void main(String[] args)
+    {
+        Date date = convert(StringTool.omitBlank("  May 22, 2013"), "MMMM dd, yyyy", Locale.US);
         
+        System.err.println(DateTool.getDateStringFromNow(date));
     }
-
-
 }

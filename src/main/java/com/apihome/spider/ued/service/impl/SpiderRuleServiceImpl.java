@@ -10,6 +10,7 @@ import org.joor.Reflect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.apihome.dao.ued.ArticleDAO;
 import com.apihome.spider.ued.dao.SpiderRuleDAO;
 import com.apihome.spider.ued.model.SpiderRule;
 import com.apihome.spider.ued.model.SpiderRuleBO;
@@ -26,6 +27,9 @@ public class SpiderRuleServiceImpl implements SpiderRuleService
 	@Autowired
 	private SpiderRuleDAO spiderRuleDAO;
 
+	@Autowired
+	private ArticleDAO articleDAO;
+	
 	@Override
 	public int insertSpiderRule(SpiderRuleBO bo)
 	{
@@ -65,7 +69,7 @@ public class SpiderRuleServiceImpl implements SpiderRuleService
             {
                 // 使用反射机制进行方法调用
                 SpiderTask task = Reflect.on(className).create().get();
-                task.startup(rule);
+                task.startup(rule,articleDAO);
             }
         }
     }

@@ -7,7 +7,7 @@
                     <#include "/views/menus.ftl"> 
                     <div class="span5" style="margin-left:15px;">
                         <h2>新增采集站点和规则</h2>
-                        <form name="addForm" id="addForm" action="/spiderUed/addRule" method="post">  
+                        <form name="addForm" id="addForm" action="/spider/ued/addRule" method="post">  
 			                <div class="input-control text">
 			                    <input name="src" id="src" type="text" required="required"  placeholder="请填写采集站点模块名称">
 			                </div>

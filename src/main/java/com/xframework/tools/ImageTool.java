@@ -29,44 +29,52 @@ public class ImageTool
      * @param height
      * @throws IOException
      */
-    public static String resizeImage(String filePath, int width, int height) throws IOException
+    public static String resizeImage(String filePath, int width, int height)
     {
-        File f = new File(filePath);
-        BufferedImage src = ImageIO.read(f);
-        String fileName = f.getName();
-        String targetName = WebConstant.THUMBNAIL + fileName;
-        String targetPath = f.getPath().replace(fileName, targetName);
-        int sHeight = src.getHeight();
-        int sWidth = src.getWidth();
+        String targetPath = null;
         
-        int tHeight = height;
-        int tWidth = width;
-        
-        double heightRatio = sHeight/height;
-        double widthRatio = sWidth/width;
-        
-        if (heightRatio < 1 && widthRatio < 1)
+        try
         {
-            //  此情况直接补白
-            BufferedImage fImage = fillerImage(src, width, height, false);
-            ImageIO.write(fImage, "JPG", new File(targetPath));
-        }
-        else 
-        {
-            if (heightRatio > widthRatio)
+            File f = new File(filePath);
+            BufferedImage src = ImageIO.read(f);    
+            String fileName = f.getName();
+            String targetName = WebConstant.THUMBNAIL + fileName;
+            targetPath = f.getPath().replace(fileName, targetName);
+            
+            int sHeight = src.getHeight();
+            int sWidth = src.getWidth();
+            int tHeight = height;
+            int tWidth = width;
+            double heightRatio = sHeight/height;
+            double widthRatio = sWidth/width;
+            
+            if (heightRatio < 1 && widthRatio < 1)
             {
-                 tWidth = (int) (sWidth*(1/heightRatio));
+                //  此情况直接补白
+                BufferedImage fImage = fillerImage(src, width, height, false);
+                ImageIO.write(fImage, "JPG", new File(targetPath));
             }
             else 
             {
-                tHeight = (int) (sHeight*(1/widthRatio));
+                if (heightRatio > widthRatio)
+                {
+                     tWidth = (int) (sWidth*(1/heightRatio));
+                }
+                else 
+                {
+                    tHeight = (int) (sHeight*(1/widthRatio));
+                }
+                ResampleOp resampleOp = new ResampleOp(tWidth, tHeight);
+                BufferedImage rescaled = resampleOp.filter(src, null);
+                BufferedImage fImage = fillerImage(rescaled, width, height, true);
+                ImageIO.write(fImage, "JPG", new File(targetPath));
             }
-            ResampleOp resampleOp = new ResampleOp(tWidth, tHeight);
-            BufferedImage rescaled = resampleOp.filter(src, null);
-            BufferedImage fImage = fillerImage(rescaled, width, height, true);
-            ImageIO.write(fImage, "JPG", new File(targetPath));
         }
-        
+        catch (Exception e)
+        {
+            logger.error("-----ImageTool resizeImage-----", e);
+        }
+
         return targetPath;
     }
     
@@ -79,7 +87,7 @@ public class ImageTool
      * @return
      * @throws IOException
      */
-    public static BufferedImage fillerImage(BufferedImage sImage, int width, int height, boolean isResize) throws IOException
+    public static BufferedImage fillerImage(BufferedImage sImage, int width, int height, boolean isResize)
     {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);  
         Graphics2D g = image.createGraphics();  

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.apihome.spider.ued.model.SpiderRule;
 import com.apihome.spider.ued.model.SpiderRuleBO;
 import com.apihome.spider.ued.service.SpiderRuleService;
+import com.apihome.web.ued.constants.JsonResult;
 import com.apihome.web.ued.constants.WebConstant;
 import com.xframework.pagination.PageView;
 
@@ -20,7 +21,7 @@ import com.xframework.pagination.PageView;
  * @author david.wang
  * @date 2013-6-12 上午1:59:51
  */
-@Path("spiderUed")
+@Path("/spider/ued")
 public class SpiderUedController
 {
 	@Autowired
@@ -50,7 +51,7 @@ public class SpiderUedController
 	public String addRule(Invocation inv, SpiderRuleBO bo)
 	{
 		spiderRuleService.insertSpiderRule(bo);
-		return "r:/spiderUed/list/1";
+		return "r:/spider/ued/list/1";
 	}
 	
 	/**
@@ -63,7 +64,7 @@ public class SpiderUedController
     @Get("/list")
 	public String queryRules()
 	{
-		return "r:/spiderUed/list/1";
+		return "r:/spider/ued/list/1";
 	}
 	
 	/**
@@ -82,7 +83,7 @@ public class SpiderUedController
 	}
     
     /**
-     * 爬虫任务
+     * 启动爬虫任务
      * @param inv
      * @return
      */
@@ -95,8 +96,9 @@ public class SpiderUedController
         SpiderRule rule = spiderRuleService.querySpiderRuleById(ruleId);
         rule.setPageFrom(pageFrom);
         rule.setPageTo(pageTo);
-        //spiderRuleService.startupTask(rule);
+        spiderRuleService.startupTask(rule);
         
-        return "@任务开启成功～～～";
+        JsonResult result = new JsonResult(true,"启动爬虫任务成功");
+        return "@Json"+result.toString();
     }
 }

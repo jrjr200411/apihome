@@ -196,6 +196,16 @@ public class StringTool extends StringUtils
 		return is;
 	}
 	
+    /**
+     * 获取分割后的字符串数组信息
+     * @param Str
+     * @param Split
+     * @return 字符串数组
+     */
+    public String[] getSplit(String Str, String Split)
+    {
+        return Str.split(Split);
+    }
 
 	public static void main(String[] args)
 	{

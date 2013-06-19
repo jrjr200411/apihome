@@ -49,7 +49,7 @@ public class WebConstant
     public static final int ARTICLE_STATUS_DELETE = -1;
     
     /*******图片保存路径*******/
-    public static final String IMGS_SAVE_PATH = "/opt/images";
+    public static final String IMGS_SAVE_PATH = "/opt/images/";
     
     /*******缩略图*******/
     public static final int IMG_WIDTH = 720;

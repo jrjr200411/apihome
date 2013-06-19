@@ -65,5 +65,9 @@
     
     <bean id="viewDispatcher" class="com.xframework.commons.FreeMarkerViewDispatcher"/>
     
-    <util:properties id="applicationProperties" location="classpath:META-INF/application.properties" /> 
+    <util:properties id="applicationProperties" location="classpath:META-INF/application.properties" />
+    
+    
+    <import resource="bean-extend.xml" />
+     
 </beans>

@@ -10,8 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
@@ -28,7 +32,16 @@ public class DwTool
     //线程池
     private static ExecutorService exec = Executors.newFixedThreadPool(POOL_SIZE);;
 
+    private static final int corePoolSize = 2;
+    private static final int maxPoolSize = 15;
+    private static final int keepAliveTime = 10;
+    private static final int workQueue = 20;
     
+    /** 线程池 */
+    private static ThreadPoolExecutor spiderThreadPool = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
+                    keepAliveTime, TimeUnit.SECONDS,
+                    new ArrayBlockingQueue<Runnable>(workQueue),
+                    new ThreadPoolExecutor.CallerRunsPolicy());
     
     /**
      * 获取网络文件，转存到fileDes中，fileDes需要带文件后缀名
@@ -109,16 +122,50 @@ public class DwTool
      * @param fileDes
      * @throws Exception
      */
-    public static List<String> batchSaveFile(List<String> fileUrlList,String fileDesPath) throws Exception
+    public static List<String> batchSaveFile(final List<String> fileUrlList,final String fileDesPath) throws Exception
     {
-    	List<String> desList = new ArrayList<String>();
+    	final List<String> desList = new ArrayList<String>();
         if (fileUrlList.size() > 0)
         {
-            for (int i = 0; i < fileUrlList.size(); i++)
+            File file = new File(fileDesPath);
+            if (!file.exists())
             {
-                String fileDes = fileDesPath+fileUrlList.get(i).substring(fileUrlList.get(i).lastIndexOf("/"));
-                desList.add(fileDes);
-                loadPage(fileUrlList.get(i), fileDes);
+                file.mkdirs();
+            }
+            
+            int size = fileUrlList.size();
+            final CountDownLatch end = new CountDownLatch(size);
+            for (int index = 0; index < size; index++)
+            {
+                final int no = index; 
+                spiderThreadPool.execute(new Runnable()
+                {
+                    public void run()
+                    {
+                        try
+                        {
+                            String fileDes = fileDesPath+fileUrlList.get(no).substring(fileUrlList.get(no).lastIndexOf("/"));
+                            desList.add(fileDes);
+                            saveUrlFile(fileUrlList.get(no), fileDes);
+                        } 
+                        catch (Exception e)
+                        {
+                            logger.error("-------loadPage过程中出错------", e);
+                        } 
+                        finally
+                        {
+                            end.countDown();
+                        }
+                    }
+                });
+            }
+            try
+            {
+                end.await();
+            } 
+            catch (InterruptedException e)
+            {
+                logger.error("-------CountDownLatch InterruptedException------", e);
             }
         }
         
@@ -163,7 +210,7 @@ public class DwTool
             list.add("http://b.hiphotos.baidu.com/album/w%3D2048/sign=187b9ec2a044ad342ebf8087e49a0df4/ae51f3deb48f8c541db6f9003b292df5e0fe7fb3.jpg");
             list.add("http://www.baidu.com/img/baidu_jgylogo3.gif");
             
-            batchSaveFile(list, "/opt");
+            batchSaveFile(list, "/opt/images/xx");
         } 
         catch (Exception e) 
         {

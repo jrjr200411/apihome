@@ -31,9 +31,9 @@
 									</#if>
 		                        </td>
 		                        <td class="center">
-		                        	<a href="/spiderUed/update?id=${rule.id?string}"><i class="icon-wrench"></i></a>
+		                        	<a href="/spider/ued/update?id=${rule.id?string}"><i class="icon-wrench"></i></a>
 		                        	&nbsp;
-		                        	<a href="/spiderUed/delete?id=${rule.id?string}"><i class="icon-cancel"></i></a>
+		                        	<a href="/spider/ued/delete?id=${rule.id?string}"><i class="icon-cancel"></i></a>
 		                        	&nbsp;
 		                        	<#if rule.status == 0>
                                     <a href="javascript:void(0);" class="settingOpt" id="${rule.id?string}"><i class="icon-cog"></i></a>

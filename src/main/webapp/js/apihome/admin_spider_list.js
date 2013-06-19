@@ -36,11 +36,19 @@ $(document).ready(function() {
 						$.ajax({
 							type: "get",
 							async: true,
-							url: "/spiderUed/spiderTask",
+							url: "/spider/ued/spiderTask",
 							data: data,
 							dataType:'json', 
-							success: function(data){
-								
+							success: function(data)
+							{
+								if(data.success)
+								{
+									alert(data.resultMsg);
+								}
+								else
+								{
+									alert(data.resultMsg);
+								}
 							}
 						});
 					}
