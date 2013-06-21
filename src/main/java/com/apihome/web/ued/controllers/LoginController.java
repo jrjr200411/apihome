@@ -23,7 +23,7 @@ public class LoginController
     @Get("")
     public String show() 
     {
-        return "admin_login";
+        return "admin/login";
     }
 
     /**
@@ -51,7 +51,7 @@ public class LoginController
             session.removeAttribute("loginUser");
         }
         
-        return "admin_login";
+        return "admin/login";
     }
 }
 

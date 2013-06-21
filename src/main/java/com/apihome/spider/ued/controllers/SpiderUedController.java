@@ -37,7 +37,7 @@ public class SpiderUedController
 	@Get("/addRuleView")
 	public String addRuleView()
 	{
-		return "admin_spider_rule";
+		return "admin/spider_rule";
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class SpiderUedController
 	{
         PageView<SpiderRule> page = spiderRuleService.queryListByPage(pageNo, WebConstant.DEFAULT_PAGE_SIZE);
         inv.addModel("pageView", page);
-		return "admin_spider_list";
+		return "admin/spider_list";
 	}
     
     /**
