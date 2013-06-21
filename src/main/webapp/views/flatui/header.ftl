@@ -17,8 +17,5 @@
 </head>
 <body>
 	<#include "/views/flatui/navigation.ftl"> 
-    
 	<!-- container begin -->
-    <div class="container contentZone tile" >
-
-
+	<div class="container contentZone tile" >

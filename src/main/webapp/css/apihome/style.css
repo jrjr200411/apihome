@@ -19,6 +19,32 @@ body {
     margin-bottom: 73px;
 }
 
+.tags {
+    background: none repeat scroll 0 0 white;
+    border: 2px solid #1ABC9C;
+    border-radius: 6px 6px 6px 6px;
+    height: 100px;
+    margin-bottom: 18px;
+    overflow-y: auto;
+    padding: 6px 1px 1px 6px;
+    text-align: left;
+}
+
+.tags .tag {
+    background: none repeat scroll 0 0 #1ABC9C;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    padding: 6px 13px 6px 19px;
+    position: relative;
+    transition: all 0.14s linear 0s;
+    vertical-align: middle;
+}
+
 .catname {
     color: black;
     font-family: 'Varela Round',sans-serif;
