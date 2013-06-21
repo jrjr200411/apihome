@@ -1,4 +1,4 @@
-package com.apihome.spider.ued.common;
+package com.apihome.spider.ued.commons;
 
 import java.io.IOException;
 

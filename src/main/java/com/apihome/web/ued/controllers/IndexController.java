@@ -8,18 +8,14 @@ import net.paoding.rose.web.annotation.rest.Get;
  * @author david.wang
  * 
  */
-@Path("index")
+@Path("")
 public class IndexController
 {
-    /**
-     * 后台首页
-     * @return
-     */
-    @Get("")
+
+    @Get("index")
     public String indexView()
     {
-        return "index";
+        return "flatui/index";
     }
 
-    
 }

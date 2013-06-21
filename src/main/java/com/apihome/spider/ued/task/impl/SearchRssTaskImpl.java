@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 
 import com.apihome.dao.ued.RssDAO;
 import com.apihome.model.ued.LinkPO;
-import com.apihome.spider.ued.common.HttpClientFactory;
-import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.commons.HttpClientFactory;
+import com.apihome.spider.ued.constants.UedConstant;
 import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.xframework.tools.RegexTool;
 import com.xframework.tools.StringTool;

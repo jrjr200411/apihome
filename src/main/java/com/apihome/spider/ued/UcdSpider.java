@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.constants.UedConstant;
 import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.apihome.spider.ued.task.impl.UcdArticleTaskImpl;
 import com.apihome.spider.ued.task.impl.UcdTopicTaskImpl;

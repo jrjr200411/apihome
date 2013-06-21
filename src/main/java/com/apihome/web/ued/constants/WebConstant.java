@@ -7,9 +7,13 @@ package com.apihome.web.ued.constants;
  */
 public class WebConstant
 {
+    /***********系统变量*************/
+    
+    public static final String UED_DOMAIN_PATH = "UED_DOMAIN_PATH";
+    
+    /***********分页默认变量*************/
     // 默认分页
     public static final int DEFAULT_PAGE_SIZE = 10;
-	
     // 默认分页
     public static final int DEFAULT_PAGE_NUM = 1;
     

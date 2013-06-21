@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.apihome.dao.ued.UcdDAO;
-import com.apihome.spider.ued.common.HttpClientFactory;
+import com.apihome.spider.ued.commons.HttpClientFactory;
 import com.apihome.spider.ued.task.DiscardSpiderTask;
 
 /**

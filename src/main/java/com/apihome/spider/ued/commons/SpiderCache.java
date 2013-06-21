@@ -1,4 +1,4 @@
-package com.apihome.spider.ued.common;
+package com.apihome.spider.ued.commons;
 
 import java.util.Set;
 
@@ -8,7 +8,7 @@ import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
 
 import com.apihome.spider.ued.annotation.HashUrl;
-import com.apihome.spider.ued.constant.UedConstant;
+import com.apihome.spider.ued.constants.UedConstant;
 
 @Component
 public class SpiderCache

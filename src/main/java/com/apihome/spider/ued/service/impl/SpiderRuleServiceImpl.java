@@ -1,7 +1,7 @@
 package com.apihome.spider.ued.service.impl;
 
-import static com.apihome.spider.ued.constant.UedConstant.DEFAULT_START_PAGE_NUM;
-import static com.apihome.spider.ued.constant.UedConstant.URL_MAPPING_MAP;
+import static com.apihome.spider.ued.constants.UedConstant.DEFAULT_START_PAGE_NUM;
+import static com.apihome.spider.ued.constants.UedConstant.URL_MAPPING_MAP;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.apihome.spider.ued.task.impl;
 
-import static com.apihome.spider.ued.constant.UedConstant.UCDCHINA_LOOP_INT;
-import static com.apihome.spider.ued.constant.UedConstant.UCDCHINA_TOPIC_SPIDER_FLAG;
+import static com.apihome.spider.ued.constants.UedConstant.UCDCHINA_LOOP_INT;
+import static com.apihome.spider.ued.constants.UedConstant.UCDCHINA_TOPIC_SPIDER_FLAG;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.apihome.dao.ued.UcdDAO;
 import com.apihome.model.ued.QuitNode;
 import com.apihome.model.ued.TopicPO;
-import com.apihome.spider.ued.common.HttpClientFactory;
+import com.apihome.spider.ued.commons.HttpClientFactory;
 import com.apihome.spider.ued.task.DiscardSpiderTask;
 import com.xframework.tools.StringTool;
 

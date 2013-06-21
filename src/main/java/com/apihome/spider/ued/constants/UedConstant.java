@@ -1,4 +1,4 @@
-package com.apihome.spider.ued.constant;
+package com.apihome.spider.ued.constants;
 
 import java.util.HashMap;
 import java.util.Map;
