@@ -14,6 +14,6 @@
 
     <title>Metro UI CSS</title>
 </head>
-<body class="modern-ui" onload="prettyPrint()">
+<body class="metrouicss" onload="prettyPrint()">
 
 <#include "/views/navigation.ftl"> 

@@ -1,9 +1,9 @@
 package com.apihome.spider.ued.task.impl;
 
-import static com.apihome.spider.ued.constant.UcdConstant.HTTP;
-import static com.apihome.spider.ued.constant.UcdConstant.UCDCHINA_ARTICLE_SPIDER_FLAG;
-import static com.apihome.spider.ued.constant.UcdConstant.UCDCHINA_DOMAIN;
-import static com.apihome.spider.ued.constant.UcdConstant.UCDCHINA_LOOP_INT;
+import static com.apihome.spider.ued.constants.UedConstant.HTTP;
+import static com.apihome.spider.ued.constants.UedConstant.UCDCHINA_ARTICLE_SPIDER_FLAG;
+import static com.apihome.spider.ued.constants.UedConstant.UCDCHINA_DOMAIN;
+import static com.apihome.spider.ued.constants.UedConstant.UCDCHINA_LOOP_INT;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,10 +22,10 @@ import com.apihome.dao.ued.UcdDAO;
 import com.apihome.model.ued.ArticlePO;
 import com.apihome.model.ued.QuitNode;
 import com.apihome.model.ued.TopicArticlePO;
-import com.apihome.spider.ued.common.HttpClientFactory;
-import com.apihome.spider.ued.task.SpiderTask;
-import com.apihome.web.ued.tools.DateTool;
-import com.apihome.web.ued.tools.StringTool;
+import com.apihome.spider.ued.commons.HttpClientFactory;
+import com.apihome.spider.ued.task.DiscardSpiderTask;
+import com.xframework.tools.DateTool;
+import com.xframework.tools.StringTool;
 
 /**
  * @ClassName: UcdArticleTaskImpl 
@@ -35,7 +35,7 @@ import com.apihome.web.ued.tools.StringTool;
  * @version 1.0
  */
 @Component("ucdSpiderTaskImpl")
-public class UcdArticleTaskImpl implements SpiderTask 
+public class UcdArticleTaskImpl implements DiscardSpiderTask 
 {
 	protected static Log logger = LogFactory.getLog(UcdArticleTaskImpl.class);
 

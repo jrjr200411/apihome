@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.apihome.model.ued.Admin;
 import com.apihome.service.ued.AdminService;
 import com.apihome.web.ued.constants.WebConstant;
-import com.apihome.web.ued.tools.RegexTool;
 import com.xframework.pagination.PageView;
+import com.xframework.tools.RegexTool;
 
 /**
  * 后台管理功能控制器
@@ -34,7 +34,7 @@ public class AdminController
     @Get("")
     public String indexView()
     {
-        return "admin_index";
+        return "admin/index";
     }
 
     /**
@@ -47,7 +47,7 @@ public class AdminController
         pageNo = pageNo > 0 ? pageNo : 1;
         PageView<Admin> page = adminService.queryListByPage(pageNo, WebConstant.DEFAULT_PAGE_SIZE);
         inv.addModel("pageView", page);
-        return "admin_list";
+        return "admin/list";
     }
     
     /**
@@ -57,7 +57,7 @@ public class AdminController
     @Get("reg")
     public String regView(Invocation inv)
     {
-        return "admin_reg";
+        return "admin/reg";
     }
     
     /**

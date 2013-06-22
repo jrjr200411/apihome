@@ -14,8 +14,8 @@ import com.apihome.service.ued.UserService;
 import com.apihome.web.ued.constants.ResultEnmu;
 import com.apihome.web.ued.constants.ResultJson;
 import com.apihome.web.ued.constants.WebConstant;
-import com.apihome.web.ued.tools.FileTool;
-import com.apihome.web.ued.tools.UniqId;
+import com.xframework.tools.FileTool;
+import com.xframework.tools.UniqId;
 
 /**
  * crack控制器得统一参数验证

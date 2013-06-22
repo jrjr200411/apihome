@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.apihome.model.ued.User;
 import com.apihome.service.ued.UserService;
 import com.apihome.web.ued.constants.WebConstant;
-import com.apihome.web.ued.tools.RegexTool;
-import com.apihome.web.ued.tools.UniqId;
 import com.xframework.pagination.PageView;
+import com.xframework.tools.RegexTool;
+import com.xframework.tools.UniqId;
 
 /**
  * 前台用户控制器
@@ -37,7 +37,7 @@ public class UserController
         pageNo = pageNo > 0 ? pageNo : 1;
         PageView<User> page = userService.queryListByPage(pageNo, WebConstant.DEFAULT_PAGE_SIZE);
         inv.addModel("pageView", page);
-        return "user_list";
+        return "user/list";
     }
 
     /**
@@ -47,7 +47,7 @@ public class UserController
     @Get("reg")
     public String regView(Invocation inv)
     {
-        return "user_reg";
+        return "user/reg";
     }
 
     /**
@@ -117,7 +117,7 @@ public class UserController
     {
         User user = userService.queryUserById(id);
         inv.addModel("user", user);
-        return "user_update";
+        return "user/update";
     }
 
     /**
